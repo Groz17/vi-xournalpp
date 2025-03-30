@@ -10,7 +10,8 @@ ALL_MODES = {
   "file",
   "navigation",
   "visual",
-  "resize"
+  "resize",
+  "audio"
 }
 --------------------
 -- KEYBINDINGS:   --
@@ -200,6 +201,17 @@ keybindings = {
     buttons     = {"<Shift>F"},
     modes       = {"tool"},
     call        = function() currentMode = "resize" end
+  },
+  audio = {
+    description = "Audio",
+    buttons     = {"at"},
+    modes       = {"tool"},
+    call        = function()
+      playObject()
+      clickPausePlay()
+      currentMode = "audio"
+      sticky = true
+    end
   },
 
   -- Various tool mode commands
@@ -596,7 +608,33 @@ keybindings = {
     buttons     = {"f", "g"},
     modes       = {"visual"},
     call        = clickSelectObject
-  }
+  },
+
+  -- Audio
+  Pause = {
+    description = "Pause",
+    buttons = {"space"},
+    modes = {"audio"},
+    call = clickPausePlay
+  },
+  Stop = {
+    description = "Stop",
+    buttons = {"Escape"},
+    modes = {"audio"},
+    call = clickStop
+  },
+  SeekForward = {
+    description = "Seek Forward",
+    buttons = {"l"},
+    modes = {"audio"},
+    call = clickSeekForward
+  },
+  SeekBackwards = {
+    description = "Seek Backwards",
+    buttons = {"h"},
+    modes = {"audio"},
+    call = clickSeekBackwards
+  },
 }
 
 -- helper functions
